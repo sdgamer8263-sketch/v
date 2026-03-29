@@ -858,21 +858,22 @@ export default function App() {
           {activeTab === 'Servers' && (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {servers.map(server => (
-                <ServerCard 
-                  key={server.name}
-                  name={server.name} 
-                  status={server.name === 'Survival SMP' ? serverStatus : server.status as 'Online' | 'Offline' | 'Starting'} 
-                  cpu={server.name === 'Survival SMP' ? (serverStatus === 'Online' ? '45%' : serverStatus === 'Starting' ? '89%' : '0%') : server.cpu} 
-                  ram={server.name === 'Survival SMP' ? (serverStatus === 'Online' ? '4.2 GB' : serverStatus === 'Starting' ? '2.4 GB' : '0 GB') : server.ram} 
-                  node={server.node} 
-                  onClick={() => { setActiveTab('ServerView'); setActiveServerTab('Console'); }} 
-                  themeMode={themeMode} 
-                  icon={serverCustomization[server.name]?.icon} 
-                  bg={serverCustomization[server.name]?.bg} 
-                  onStart={server.name === 'Survival SMP' ? () => { setServerStatus('Starting'); setTimeout(() => setServerStatus('Online'), 2000); } : undefined} 
-                  onRestart={server.name === 'Survival SMP' ? () => { setServerStatus('Starting'); setTimeout(() => setServerStatus('Online'), 2000); } : undefined} 
-                  onStop={server.name === 'Survival SMP' ? () => setServerStatus('Offline') : undefined} 
-                />
+                <div key={server.name}>
+                  <ServerCard 
+                    name={server.name} 
+                    status={server.name === 'Survival SMP' ? serverStatus : server.status as 'Online' | 'Offline' | 'Starting'} 
+                    cpu={server.name === 'Survival SMP' ? (serverStatus === 'Online' ? '45%' : serverStatus === 'Starting' ? '89%' : '0%') : server.cpu} 
+                    ram={server.name === 'Survival SMP' ? (serverStatus === 'Online' ? '4.2 GB' : serverStatus === 'Starting' ? '2.4 GB' : '0 GB') : server.ram} 
+                    node={server.node} 
+                    onClick={() => { setActiveTab('ServerView'); setActiveServerTab('Console'); }} 
+                    themeMode={themeMode} 
+                    icon={serverCustomization[server.name]?.icon} 
+                    bg={serverCustomization[server.name]?.bg} 
+                    onStart={server.name === 'Survival SMP' ? () => { setServerStatus('Starting'); setTimeout(() => setServerStatus('Online'), 2000); } : undefined} 
+                    onRestart={server.name === 'Survival SMP' ? () => { setServerStatus('Starting'); setTimeout(() => setServerStatus('Online'), 2000); } : undefined} 
+                    onStop={server.name === 'Survival SMP' ? () => setServerStatus('Offline') : undefined} 
+                  />
+                </div>
               ))}
             </div>
           )}
